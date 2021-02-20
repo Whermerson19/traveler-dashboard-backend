@@ -25,8 +25,6 @@ export default class CreateCityService {
       description,
     });
 
-    console.log("teste git");
-
     return city;
   }
 }
