@@ -4,8 +4,11 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
 import { Expose } from "class-transformer";
+import Place from "./Place";
 
 @Entity("cities")
 export default class City {
@@ -20,6 +23,9 @@ export default class City {
 
   @Column()
   description: string;
+
+  @ManyToOne(() => Place, (place) => place.city)
+  place: Place;
 
   @CreateDateColumn()
   created_at: Date;
