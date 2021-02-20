@@ -7,6 +7,7 @@ import {
   OneToMany,
   JoinColumn,
   OneToOne,
+  ManyToOne,
 } from "typeorm";
 
 import Category from "../models/Category";
@@ -43,8 +44,8 @@ export default class Place {
   @Column()
   addresses_id: string;
 
-  // uma cidade pode ter varios locais mas um local so pode ter uma cidade
-  @OneToMany(() => City, (city) => city.place, { eager: true })
+  // vários locais para uma mesma cidade
+  @ManyToOne(() => City, { eager: true })
   @JoinColumn({ name: "city_id" })
   city: City;
 

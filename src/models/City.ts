@@ -24,14 +24,11 @@ export default class City {
   @Column()
   description: string;
 
-  @ManyToOne(() => Place, (place) => place.city)
-  place: Place;
-
   @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
-  updated_ate: Date;
+  updated_at: Date;
 
   @Expose({ name: "url_image" })
   getUrlImage(): string | null {

@@ -30,6 +30,16 @@ export default class AddressesTable1613732396154 implements MigrationInterface {
             type: "varchar",
             isNullable: true,
           },
+          {
+            name: "created_at",
+            type: "timestamp with time zone",
+            default: "now()",
+          },
+          {
+            name: "updated_at",
+            type: "timestamp with time zone",
+            default: "now()",
+          },
         ],
       })
     );

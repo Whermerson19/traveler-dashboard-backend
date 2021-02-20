@@ -7,6 +7,8 @@ export default class CitiesController {
   public async create(request: Request, response: Response): Promise<Response> {
     try {
       const createCities = new CreateCityService();
+
+      const user_id = request.user.id;
       const image = request.file.filename;
       const { name, description } = request.body;
 
@@ -14,6 +16,7 @@ export default class CitiesController {
         name,
         image,
         description,
+        user_id,
       });
 
       return response.status(200).json(classToClass(city));
