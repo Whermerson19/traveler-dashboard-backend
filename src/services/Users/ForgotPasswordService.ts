@@ -22,6 +22,7 @@ export default class ForgotPasswordService {
     );
 
     const userToken = await usersTokenRepository.create(user.id);
+    console.log(userToken.token);
 
     await mailProvider.sendMail({
       to: {

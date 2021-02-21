@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  Generated,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -12,6 +13,7 @@ export default class User_Token {
   id: string;
 
   @Column()
+  @Generated("uuid")
   token: string;
 
   @Column()

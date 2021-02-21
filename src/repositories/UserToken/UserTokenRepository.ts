@@ -25,6 +25,7 @@ export default class UserTokenRepository implements IUserTokenRepository {
       user_id,
     });
 
-    return this.ormRepository.save(user_token);
+    await this.ormRepository.save(user_token);
+    return user_token;
   }
 }

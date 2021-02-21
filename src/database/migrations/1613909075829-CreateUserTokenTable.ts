@@ -17,7 +17,6 @@ export default class CreateUserTokenTable1613909075829
           {
             name: "token",
             type: "varchar",
-            isPrimary: true,
             generationStrategy: "uuid",
             default: "uuid_generate_v4()",
           },
