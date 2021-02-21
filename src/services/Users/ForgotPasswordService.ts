@@ -1,15 +1,13 @@
-import { getRepository } from "typeorm";
 import path from "path";
 
-import User_Token from "../../models/User_Token";
-
 import UsersRepository from "../../repositories/Users/UsersRepository";
+import UserTokenRepository from "../../repositories/UserToken/UserTokenRepository";
 import MailProvider from "../../Providers/MailProvider";
 
 export default class ForgotPasswordService {
   public async run(email: string): Promise<void> {
     const usersRepository = new UsersRepository();
-    const usersTokenRepository = getRepository(User_Token);
+    const usersTokenRepository = new UserTokenRepository();
     const mailProvider = new MailProvider();
 
     const user = await usersRepository.findByEmail(email);
@@ -23,11 +21,7 @@ export default class ForgotPasswordService {
       "forgotPassword.hbs"
     );
 
-    const userToken = usersTokenRepository.create({
-      user_id: user.id,
-    });
-
-    await usersTokenRepository.save(userToken);
+    const userToken = await usersTokenRepository.create(user.id);
 
     await mailProvider.sendMail({
       to: {
