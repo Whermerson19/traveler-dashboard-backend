@@ -14,6 +14,7 @@ const resetPasswordController = new ResetPasswordController();
 
 userRouter.post("/create", usersController.create);
 userRouter.put("/update", auth, usersController.update);
+userRouter.delete("/delete", auth, usersController.delete);
 
 userRouter.post("/forgot-password", sendPasswordController.create);
 userRouter.post("/reset-password/:token", resetPasswordController.create);

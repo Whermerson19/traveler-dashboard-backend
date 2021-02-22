@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 
 import CreateUserService from "../../services/Users/CreateUserService";
 import UpdateUserService from "../../services/Users/UpdateUserService";
+import DeleteUserService from "../../services/Users/DeleteUserService";
+
 import { classToClass } from "class-transformer";
 
 export default class UsersController {
@@ -16,7 +18,9 @@ export default class UsersController {
         password,
       });
 
-      return response.status(200).json(classToClass(user));
+      return response
+        .status(200)
+        .json({ success: "Removed user with success" });
     } catch (err) {
       return response.status(400).json({ error: err.message });
     }
@@ -45,6 +49,21 @@ export default class UsersController {
       });
 
       return response.status(200).json(classToClass(user));
+    } catch (err) {
+      return response.status(400).json({ error: err.message });
+    }
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    try {
+      const deleteUser = new DeleteUserService();
+      const user_id = request.user.id;
+
+      const data = await deleteUser.run({
+        user_id,
+      });
+
+      return response.status(200).json(classToClass(data));
     } catch (err) {
       return response.status(400).json({ error: err.message });
     }

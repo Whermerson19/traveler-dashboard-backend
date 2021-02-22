@@ -9,6 +9,18 @@ export default class UsersRepository implements IUsersRepository {
     this.ormRepository = getRepository(User);
   }
 
+  public async findAllUsers(): Promise<User[]> {
+    const users = await this.ormRepository.find();
+
+    return users;
+  }
+
+  public async deleteUser(user_id: string): Promise<void> {
+    await this.ormRepository.delete({
+      id: user_id,
+    });
+  }
+
   public async findById(id: string): Promise<User | undefined> {
     const user = await this.ormRepository.findOne({
       where: {
