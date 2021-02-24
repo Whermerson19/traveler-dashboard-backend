@@ -28,4 +28,6 @@ cityRouter.put(
   updateImageController.create
 );
 
+cityRouter.put("/update/:city_id", authorization, citiesController.update);
+
 export default cityRouter;

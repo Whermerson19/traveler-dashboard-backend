@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { classToClass } from "class-transformer";
 
 import CreateCityService from "../../services/Cities/CreateCityService";
+import UpdateCityService from "../../services/Cities/UpdateCityService";
 
 export default class CitiesController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -17,6 +18,27 @@ export default class CitiesController {
         image,
         description,
         user_id,
+      });
+
+      return response.status(200).json(classToClass(city));
+    } catch (err) {
+      return response.status(400).json({ error: err.message });
+    }
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    try {
+      const updateCity = new UpdateCityService();
+
+      const user_id = request.user.id;
+      const { name, description } = request.body;
+      const { city_id } = request.params;
+
+      const city = await updateCity.run({
+        user_id,
+        city_id,
+        name,
+        description,
       });
 
       return response.status(200).json(classToClass(city));

@@ -57,7 +57,7 @@ export default class UsersController {
       const deleteUser = new DeleteUserService();
       const user_id = request.user.id;
 
-      const data = await deleteUser.run({
+      await deleteUser.run({
         user_id,
       });
 
