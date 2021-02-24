@@ -18,9 +18,7 @@ export default class UsersController {
         password,
       });
 
-      return response
-        .status(200)
-        .json({ success: "Removed user with success" });
+      return response.status(200).json(classToClass(user));
     } catch (err) {
       return response.status(400).json({ error: err.message });
     }
@@ -63,7 +61,9 @@ export default class UsersController {
         user_id,
       });
 
-      return response.status(200).json(classToClass(data));
+      return response
+        .status(200)
+        .json({ success: "Removed user with success" });
     } catch (err) {
       return response.status(400).json({ error: err.message });
     }
