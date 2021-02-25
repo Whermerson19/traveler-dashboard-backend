@@ -6,6 +6,8 @@ const addressRouter = Router();
 
 const addressController = new AddressesController();
 
-addressRouter.post("/create", authorization, addressController.create);
+addressRouter.use(authorization);
+addressRouter.post("/create", addressController.create);
+addressRouter.put("/update/:address_id", addressController.update);
 
 export default addressRouter;
