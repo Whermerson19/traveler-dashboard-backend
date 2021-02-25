@@ -30,12 +30,12 @@ export default class Place {
   category: string;
 
   // um local pode ter somente um endereço e um endereço pode ter somente um local
-  @OneToOne(() => Address)
-  @JoinColumn({ name: "address_id" })
-  address: Address;
-
   @Column()
   addresses_id: string;
+
+  @OneToOne(() => Address, { eager: true })
+  @JoinColumn({ name: "addresses_id" })
+  address: Address;
 
   // vários locais para uma mesma cidade
   @ManyToOne(() => City, { eager: true })

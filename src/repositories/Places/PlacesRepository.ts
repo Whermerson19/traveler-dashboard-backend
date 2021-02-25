@@ -45,7 +45,7 @@ export default class PlacesRepository implements IPlacesRepository {
     description,
     city_id,
     category,
-    address_id,
+    addresses_id,
   }: ICreatePlace): Promise<Place> {
     const place = this.ormRepository.create({
       name,
@@ -53,7 +53,7 @@ export default class PlacesRepository implements IPlacesRepository {
       description,
       city_id,
       category,
-      addresses_id: address_id,
+      addresses_id,
     });
 
     return this.ormRepository.save(place);
