@@ -44,7 +44,7 @@ export default class PlacesRepository implements IPlacesRepository {
     image,
     description,
     city_id,
-    category_id,
+    category,
     address_id,
   }: ICreatePlace): Promise<Place> {
     const place = this.ormRepository.create({
@@ -52,7 +52,7 @@ export default class PlacesRepository implements IPlacesRepository {
       image,
       description,
       city_id,
-      category_id,
+      category,
       addresses_id: address_id,
     });
 

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import cityRouter from "./city.routes";
 
+import cityRouter from "./city.routes";
 import sessionRouter from "./session.routes";
 import userRouter from "./user.routes";
 

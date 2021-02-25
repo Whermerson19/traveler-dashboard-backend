@@ -4,7 +4,7 @@ export interface ICreatePlace {
   name: string;
   image: string;
   description: string;
-  category_id: string;
+  category: string;
   address_id: string;
   city_id: string;
 }

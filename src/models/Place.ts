@@ -4,13 +4,11 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
   JoinColumn,
   OneToOne,
   ManyToOne,
 } from "typeorm";
 
-import Category from "../models/Category";
 import Address from "./Address";
 import City from "./City";
 
@@ -28,13 +26,8 @@ export default class Place {
   @Column()
   description: string;
 
-  // uma categoria pode ter varios locais, mas um local somente pode ter uma categoria
-  @OneToMany(() => Category, (category) => category.place, { eager: true })
-  @JoinColumn({ name: "category_id" })
-  categories: Category;
-
   @Column()
-  category_id: string;
+  category: string;
 
   // um local pode ter somente um endereço e um endereço pode ter somente um local
   @OneToOne(() => Address)
