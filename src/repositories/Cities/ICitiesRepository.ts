@@ -12,4 +12,5 @@ export default interface ICitiesRepository {
   listAllCities(): Promise<City[]>;
   create(data: ICreateCity): Promise<City>;
   save(city: City): Promise<City>;
+  delete(city_id: string): Promise<void>;
 }

@@ -4,6 +4,7 @@ import { classToClass } from "class-transformer";
 import CreateCityService from "../../services/Cities/CreateCityService";
 import UpdateCityService from "../../services/Cities/UpdateCityService";
 import ListAllCitiesService from "../../services/Cities/ListAllCitiesService";
+import DeleteCityService from "../../services/Cities/DeleteCityService";
 
 export default class CitiesController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -58,6 +59,24 @@ export default class CitiesController {
       });
 
       return response.status(200).json(classToClass(city));
+    } catch (err) {
+      return response.status(400).json({ error: err.message });
+    }
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    try {
+      const deleteCity = new DeleteCityService();
+
+      const user_id = request.user.id;
+      const { city_id } = request.params;
+
+      await deleteCity.run({
+        user_id,
+        city_id,
+      });
+
+      return response.status(200).json({ sucess: "Deleted city with success" });
     } catch (err) {
       return response.status(400).json({ error: err.message });
     }

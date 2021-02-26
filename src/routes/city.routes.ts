@@ -28,4 +28,6 @@ cityRouter.put(
 
 cityRouter.put("/update/:city_id", citiesController.update);
 
+cityRouter.delete("/:city_id", citiesController.delete);
+
 export default cityRouter;
