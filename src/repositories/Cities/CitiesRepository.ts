@@ -30,6 +30,11 @@ export default class CitiesRepository implements ICitiesRepository {
     return city;
   }
 
+  public async listAllCities(): Promise<City[]> {
+    const cities = await this.ormRepository.find();
+    return cities;
+  }
+
   public async create({
     name,
     image,

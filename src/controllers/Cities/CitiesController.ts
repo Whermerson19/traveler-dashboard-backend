@@ -3,8 +3,24 @@ import { classToClass } from "class-transformer";
 
 import CreateCityService from "../../services/Cities/CreateCityService";
 import UpdateCityService from "../../services/Cities/UpdateCityService";
+import ListAllCitiesService from "../../services/Cities/ListAllCitiesService";
 
 export default class CitiesController {
+  public async index(request: Request, response: Response): Promise<Response> {
+    try {
+      const listAllCities = new ListAllCitiesService();
+      const user_id = request.user.id;
+
+      const cities = await listAllCities.run({
+        user_id,
+      });
+
+      return response.status(200).json(classToClass(cities));
+    } catch (err) {
+      return response.status(400).json({ error: err.message });
+    }
+  }
+
   public async create(request: Request, response: Response): Promise<Response> {
     try {
       const createCities = new CreateCityService();

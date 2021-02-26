@@ -14,20 +14,18 @@ const cityRouter = Router();
 const citiesController = new CitiesController();
 const updateImageController = new UpdateImageController();
 
-cityRouter.post(
-  "/create",
-  authorization,
-  uploads.single("image"),
-  citiesController.create
-);
+cityRouter.use(authorization);
+
+cityRouter.get("/", citiesController.index);
+
+cityRouter.post("/create", uploads.single("image"), citiesController.create);
 
 cityRouter.put(
   "/change-image/:city_id",
-  authorization,
   uploads.single("image"),
   updateImageController.create
 );
 
-cityRouter.put("/update/:city_id", authorization, citiesController.update);
+cityRouter.put("/update/:city_id", citiesController.update);
 
 export default cityRouter;
