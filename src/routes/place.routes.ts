@@ -21,4 +21,6 @@ placeRouter.post(
   placesController.create
 );
 
+placeRouter.put("/update/:place_id", placesController.update);
+
 export default placeRouter;
