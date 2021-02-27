@@ -29,6 +29,16 @@ export default class PlacesRepository implements IPlacesRepository {
     return place;
   }
 
+  public async listAllPlacesOfSpecifyCity(city_id: string): Promise<Place[]> {
+    const places = await this.ormRepository.find({
+      where: {
+        city_id,
+      },
+    });
+
+    return places;
+  }
+
   public async findByName(name: string): Promise<Place | undefined> {
     const place = await this.ormRepository.findOne({
       where: {
