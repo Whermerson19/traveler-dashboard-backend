@@ -59,4 +59,10 @@ export default class AddressesRepository implements IAddressesRepository {
   public async save(address: Address): Promise<Address> {
     return this.ormRepository.save(address);
   }
+
+  public async delete(address_id: string): Promise<void> {
+    await this.ormRepository.delete({
+      id: address_id,
+    });
+  }
 }

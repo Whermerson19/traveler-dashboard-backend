@@ -21,4 +21,5 @@ export default interface IAddressesRepository {
   ): Promise<Address | undefined>;
   create(data: ICreateAddress): Promise<Address>;
   save(address: Address): Promise<Address>;
+  delete(address_id: string): Promise<void>;
 }
