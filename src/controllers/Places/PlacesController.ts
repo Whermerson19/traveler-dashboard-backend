@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 
 import CreatePlaceService from "../../services/Places/CreatePlaceService";
 import UpdatePlaceService from "../../services/Places/UpdatePlaceService";
+import DeletePlaceService from "../../services/Places/DeletePlaceService";
 
 export default class PlacesController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -47,6 +48,26 @@ export default class PlacesController {
       });
 
       return response.status(200).json(classToClass(place));
+    } catch (err) {
+      return response.status(400).json({ error: err.message });
+    }
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    try {
+      const deletePlace = new DeletePlaceService();
+
+      const user_id = request.user.id;
+      const { place_id } = request.params;
+
+      await deletePlace.run({
+        user_id,
+        place_id,
+      });
+
+      return response
+        .status(200)
+        .json({ success: "place deleted with success" });
     } catch (err) {
       return response.status(400).json({ error: err.message });
     }

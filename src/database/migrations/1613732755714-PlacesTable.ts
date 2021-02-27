@@ -11,7 +11,7 @@ export default class PlacesTable1613732755714 implements MigrationInterface {
             type: "varchar",
             isPrimary: true,
             generationStrategy: "uuid",
-            default: "now()",
+            default: "uuid_generate_v4()",
           },
           {
             name: "name",

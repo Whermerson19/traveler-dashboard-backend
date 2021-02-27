@@ -35,4 +35,6 @@ placeRouter.patch(
   changePlaceImageController.update
 );
 
+placeRouter.delete("/delete/:place_id", placesController.delete);
+
 export default placeRouter;
