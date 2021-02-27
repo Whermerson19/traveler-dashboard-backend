@@ -3,7 +3,6 @@ import Place from "../../models/Place";
 import PlacesRepository from "../../repositories/Places/PlacesRepository";
 import UsersRepository from "../../repositories/Users/UsersRepository";
 import CitiesRepository from "../../repositories/Cities/CitiesRepository";
-import AddressesRepository from "../../repositories/Addresses/AddressesRepository";
 
 import StorageProvider from "../../Providers/StorageProvider";
 
@@ -28,7 +27,6 @@ export default class CreatePlaceService {
     addresses_id,
   }: IRequest): Promise<Place> {
     const placesRepository = new PlacesRepository();
-    const addressesRepository = new AddressesRepository();
     const usersRepository = new UsersRepository();
     const citiesRepository = new CitiesRepository();
 
