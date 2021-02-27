@@ -7,6 +7,7 @@ const addressRouter = Router();
 const addressController = new AddressesController();
 
 addressRouter.use(authorization);
+
 addressRouter.post("/create", addressController.create);
 addressRouter.put("/update/:address_id", addressController.update);
 addressRouter.delete("/delete/:address_id", addressController.delete);

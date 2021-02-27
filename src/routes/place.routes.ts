@@ -22,14 +22,14 @@ placeRouter.use(authorization);
 placeRouter.get("/city/:city_id", listAllPlacesOfSpecifyCityController.index);
 
 placeRouter.post(
-  "/create/city/:city_id/address/:address_id",
+  "/create/city/:city_id/address/:addresses_id",
   upload.single("image"),
   placesController.create
 );
 
 placeRouter.put("/update/:place_id", placesController.update);
 
-placeRouter.put(
+placeRouter.patch(
   "/change-image/:place_id",
   upload.single("image"),
   changePlaceImageController.update

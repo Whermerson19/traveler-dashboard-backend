@@ -16,4 +16,5 @@ export default interface IPlacesRepository {
   listAllPlacesOfSpecifyCity(city_id: string): Promise<Place[]>;
   create(data: ICreatePlace): Promise<Place>;
   save(place: Place): Promise<Place>;
+  delete(place_id: string): Promise<void>;
 }

@@ -72,4 +72,10 @@ export default class PlacesRepository implements IPlacesRepository {
   public async save(place: Place): Promise<Place> {
     return this.ormRepository.save(place);
   }
+
+  public async delete(place_id: string): Promise<void> {
+    await this.ormRepository.delete({
+      id: place_id,
+    });
+  }
 }
